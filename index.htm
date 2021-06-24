@@ -1,0 +1,676 @@
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dralun · Domain Land</title>
+
+<link class="ico" rel="icon" href="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/favicon.ico" type="image/x-icon"><link class="ico" rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/favicon.ico" type="image/x-icon"><link class="ico" rel="apple-touch-icon" sizes="128x128" href="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/apple-touch-icon.png"><link class="ico" rel="icon" sizes="192x192" href="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/android-chrome-192x192.png"></head>
+
+<!-- menu -->
+<nav id="main-menu" style="position: fixed;top:0; z-index:2;visibility:hidden;" class="loader">
+  <div class="nav-wrapper header" style="background-color:rgb(33, 124, 185); display:flex; justify-content: space-between;">
+    <div>
+    <a id="slider" href="#" data-target="user-pane" class="sidenav-trigger" style="background-color: #2f8fff;margin: 0;padding: 18;justify-items: center;display: flex;align-items: center;"><i class="material-icons">menu</i></a>
+    <a style="display: flex; align-items: center; height: 100%; "><img id="menu-logo" onclick="mode=0; setEditor('../dralun/profile/manifest');" draggable="false" ondragstart="return false;" style="height:56; width:56; cursor: pointer; margin-left: 16;" src="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/logo/shutterstock_1868090572.png" /></a></div>
+    <a class="screen-hide" onclick="mode=0; setEditor('../static/manifest');"><i class="material-icons right">menu_book</i></a>
+    <a class="screen-hide" onclick="mode=4; setEditor('');"><i class="material-icons right">map</i></a>
+    <a class="screen-hide" onclick="mode=3; setEditor('');"><i class="material-icons right">view_list</i></a>
+    <a class="screen-hide" onclick="mode=1; setEditor('../static/manifest');"><i class="material-icons right">edit</i></a>
+    <a class="screen-hide" onclick="mode=3; setEditor('');"><i class="material-icons right">search</i></a>
+    <ul class="hide-on-med-and-down" >
+      <li><a onclick="mode=0; setEditor('../dralun/profile/manifest');">GET STARTED</a></li>
+      <li><a id="domains" href="#!" data-target="domain">DOMAIN<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a onclick="mode=1; setEditor('../dralun/profile/manifest');">EDITOR</a></li>
+      <li style="height:64px;">
+        <a style="height:inherit; padding-right:0;"><i onclick="$('#search').focus();" style="height:inherit; padding-right:4;" class="material-icons">search</i><span onclick="$('#search').focus();" class="badge blue">1865</span>
+        <div id="search-box" class="input-field" style="height:inherit;">
+          <input id="search" type="search" onkeyup="searchResults()" style="padding-left:12; width: calc(100% - 1rem);">
+          <label class="label-icon" for="search" ></label>
+          <i class="material-icons" onclick="searchClear()">close</i></div></a></li></ul>
+    <ul class="right">
+      <li style="display: flex; height: 64; align-items: center;">
+        <a class="waves-effect waves-light btn modal-trigger blue" href="#user-modal"><i class="material-icons">account_circle</i></a></li></ul></div></nav>
+
+<!-- domains -->
+<ul id="domain" class="dropdown-content loader" style="visibility:hidden;">
+  <li><a onclick="mode=3; setEditor('');"><i class="material-icons">view_list</i>List View</a></li>
+  <li><a onclick="mode=4; setEditor('');"><i class="material-icons">map</i>Map View</a></li></ul>
+
+<!-- system panel -->
+<ul id="user-pane" class="sidenav loader" style="visibility:hidden;">
+  <li><div class="user-view z-depth-1" style="background-color: #a2b9cc;display: flex;margin: auto; padding: 0;align-items: flex-end;">
+    <img draggable="false" ondragstart="return false;" id="user-pic" style="height: 72;background-color: #e6f1f9;padding: 12;" src="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/shutterstock_335498723.png" /></div></li>
+  <li style="text-align: center;"><a class="subheader"><span style="font-size: 20;font-weight: bold; color: #000000;">Dralun</span><span style="margin-left:4;font-size: 18;font-weight: bold; color: #494646; ">· Domain Land</span></a></li>
+  <li style="height:24;"><a class="subheader"></a></li>
+  <li><a class="waves-effect" onclick="mode=0; setEditor('../dralun/profile'); $('#user-pane').sidenav('close');"><i class="material-icons">menu_book</i>Learn Domain Land</a></li>
+  <li><a class="waves-effect" onclick="mode=0; setEditor('../dralun/matt'); $('#user-pane').sidenav('close');"><i class="material-icons">help</i>About Dralun</a></li>
+  <li><div style="margin-top:0;" class="divider"></div></li>
+  <li><a class="subheader"></a></li>
+  <li><div id="header-logo" style="display: flex; flex-flow:column; align-items: center;justify-content: center;align-items: center; display: flex;">
+      <div id="header-logo">
+        <div id="logo" style="text-align:center;" onclick="openInNewTab('matt', false);"><img draggable="false" id="leafy" style="width:48;height:48;"/></div>
+        <div style="display: flex;align-items: center;justify-content: center;"><span id="title" style="font-weight: bold; font-size: 25px;" onclick="openInNewTab('matt', false);">LEAF</span><i class="material-icons" >copyright</i>2021</div></div>
+        <div><span style="cursor: pointer;" onclick="mode=0; setEditor('../dralun/bitos'); $('#user-pane').sidenav('close');" class="new badge green darken-2" data-badge-caption="bitOS, version 1.02"></span></div>
+      <div id="header-title"><span id="phrase" style="font-style: italic;">software on infinitive basis</span></div>
+      <span id="stat-date" class="badge blue" onclick="$('.datepicker').datepicker('open');"></span>
+      
+      <span id="stat-time" class="badge blue lighten-2" onclick="$('.timepicker').timepicker('open');"></span>
+      <span id="stat-ip" class="badge green" onclick=""></span>
+      <a class="screen-hide" onclick="mode=4; setEditor('');"><i class="material-icons right">add_circle</i></a>
+      <span id="stats" class="badge green" onclick=""></span>
+    </div></li></ul>
+
+<!-- home -->
+<div id="home" style="text-align:center;margin-top:64;visibility:hidden;position: fixed; width:100%; height: calc(100% - 64px); z-index:1; overflow-y: auto;" class="content loader">
+
+  <input type="text" class="datepicker gone"><input type="text" class="timepicker gone">
+
+<!-- search -->
+<div id="results" style="margin:80; display:none;" class="content loader">search...</div>
+  
+<!-- editor/viewer -->
+<div id="tools" class="z-depth-1" style="display:flex;align-items: center;justify-content: flex-end;padding: 12; margin-bottom: 4; width:100%;">
+  <div class="switch" onclick="previewMode();"><label style="display: flex;align-items: center;"><i class="material-icons">chrome_reader_mode</i><input type="checkbox" id="preview"><span class="lever"></span></label></div>
+  <a onclick="exportDoc();" class="btn waves-effect waves-light blue darken-1 tool" style="margin-left:24;"><i class="material-icons left">insert_drive_file</i>File</a>
+  <a onclick="exportDoc();" class="btn waves-effect waves-light green tool" style="margin-left:24;"><i class="material-icons right">publish</i>Publish</a></div>
+
+<div id="holder" style="display:flex; width:100%; justify-content:center;height: calc(100% - 160px);">
+  <div id="viewer" style="text-align:left;padding:24;height:100%;overflow-y: auto;"></div>
+  <div id="mycode" style="text-align:left;"><textarea id="code-markdown" name="code"></textarea></div></div>
+
+<!-- map/grid -->
+<div id="toolset" class="z-depth-1 content loader" style="display:flex;align-items: center;justify-content: center;padding: 12; margin-bottom: 4; width:100%;position: fixed;background-color: white; right:29; z-index:4;">
+  <label style="margin-right:24;">
+    <input type="checkbox" class="filled-in" checked="checked" />
+    <span>Unclaimed Territory</span></label>
+    <div class="input-field col s12" style="margin-right:24; width:225;">
+      <select multiple>
+        <option value="" disabled selected>Select options...</option>
+        <option value="1" data-icon="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/symbol/star.png">Series 1</option>
+        <option value="2" data-icon="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/symbol/wings.png">Reservation</option>
+        <option value="3" data-icon="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/symbol/triangle.png">Monument</option>
+        <option value="3" data-icon="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/symbol/marker.png">National Area</option>
+        <option value="3" data-icon="https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/symbol/colors.png">International</option></select><label>Land Types</label></div>
+    <div class="input-field col s12" style="margin-right:24;">
+      <select>
+        <option value="" disabled selected>Select type...</option>
+        <option value="1" data-icon="whatshot">Name</option>
+        <option value="2">Price</option></select><label>Sort By</label></div>
+        <a class="waves-effect waves-light btn" style="margin-left:24;"><i class="material-icons right">cloud</i>Reset</a></div>
+
+<div id="map" style="top:110px;" class="content loader"></div>
+<div id="grid" class="content loader">
+  <ul id="list-items" class="collapsible popout" style="width: 95%;margin: auto; padding-top:120;"></ul></div></div>
+
+<!-- dialog -->
+<div id="user-modal" class="modal content loader"><div class="modal-content">
+    <div id="intro" class="row-section"><!-- options -->
+      <div id="console" class="row">
+        <div class="col s12 m12" style="display: flex;flex-direction: column;align-items: center;">
+          <a class="waves-effect waves-light btn green" style="width:240; display: flex;
+          justify-content: space-between;"><i class="material-icons">login</i>Sign In</a><br/>
+          <a class="waves-effect waves-light btn blue" style="width:240; display: flex;
+          justify-content: space-between;" ><i class="material-icons">account_circle</i>Create User</a><br/>
+          <a class="waves-effect waves-light btn" style="width:240; display: flex;
+          justify-content: space-between;"><i class="material-icons">toll</i>Redeem Token</a><br/>
+          <a class="waves-effect waves-light btn" style="width:240; display: flex;
+          justify-content: space-between;" onclick="changeDialog('forgot');"><i class="material-icons">help</i>Forgot Account</a></div></div>
+      <div class="row hidden">
+        <div class="hover-base col s12 m12" id="new-name" style="display: flex; justify-content: center;"><div class="input-field">
+          <i class="material-icons prefix">account_circle</i><input id="user-new-name" name="user-name" type="text" class="user-input" max="24" tabindex="1" oninput="userLookup(this);" >
+          <label for="user-name">Username</label>
+          <span id="user-issue" class="helper-text" data-error="Invalid input" data-success="" >Enter username</span></div></div></div>
+      <div class="row hidden">
+        <div class="hover-base col s12 m12" id="new-name" style="display: flex; justify-content: center;"><div class="input-field">
+          <i class="material-icons prefix">account_circle</i><input id="user-new-name2" name="user-name" type="text" class="user-input" max="24" tabindex="1" oninput="userLookup(this);" >
+          <label for="user-name">Password</label>
+          <span id="user-issue" class="helper-text" data-error="Invalid input" data-success="" >Enter password</span></div></div></div>
+      <div id="forgot" class="row hidden">
+        <div class="hover-base col s12 m12" id="new-name" style="display: flex; justify-content: center;"><div class="input-field">
+          <i class="material-icons prefix">account_circle</i><input id="user-new-name3" name="user-name" type="text" class="user-input" max="24" tabindex="1" oninput="userLookup(this);" >
+          <label for="user-name">Email</label>
+          <span id="user-issue" class="helper-text" data-error="Invalid input" data-success="" >Enter email</span></div></div></div>
+  
+<!-- password phrase? check/create -->
+          <div class="row hidden">
+            <div class="input-field col s2"><i class="material-icons prefix">account_circle</i></div>
+            <div class="input-field col s8">
+              <div class="file-field input-field">
+                <div class="chip btn waves-effect">
+                  <img id="user-profile" alt="Contact Person">
+                  <span id="user-profile-text"></span><input type="file"></div>
+                <div class="file-path-wrapper hidden"><input class="file-path validate" type="text"></div></div>
+                  <span class="badge btn waves-effect green darken-2" onclick="alert('upgrade to premium')">address</span></div>
+                  <div class="row content">
+                    <div class="input-field col s2"><i class="material-icons prefix">lock</i></div>
+                    <div class="input-field col s4">message</div></div>
+                  <div class="row content">
+                      "ip_client": [],</div></div>
+  
+    <div class="modal-footer">
+      <button id="button-next" class="btn waves-effect waves-light" onclick="currentUser.check('matt');">Claim Payout<i class="material-icons left">login</i></button>
+      <a href="#!" class="modal-close waves-effect waves-gray btn-flat disabled">Cancel</a></div></div></div>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script><script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.2.0/fabric.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl8QvzOgiMOz5DqtvnAmQXyzSFd9-jooY&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+
+<script>
+
+function changeDialog(dialog) {
+  if (dialog == 'forgot')
+  { 
+    $('#forgot').removeClass('hidden'); $('#console').addClass('hidden');
+  }
+}
+
+function initial() {
+  $('select').formSelect();
+  $('#domains').dropdown({ constrainWidth: false } );
+  //$('#home').show();
+  $('.modal').modal(); $('.sidenav').sidenav();
+  $('.collapsible').collapsible();
+  $('.datepicker').datepicker(); $('.timepicker').timepicker();
+
+  $('.datepicker').onSelect = function(param) { alert('yes'); alert(param);}
+
+  setTimeout(function() {  $(".loader").css("visibility", "visible");}, 1000);
+ 
+  searchClear();
+
+  var leaf = Math.floor(Math.random() * (16 - 1 + 1)) + 1; document.getElementById('leafy').src = "https://cdn.jsdelivr.net/gh/msebolt/res@latest/img/icon/leaf/leaf" + leaf.toString() + ".png";
+   
+  var pathArray = window.location.pathname.split('/'); domain = window.location.host;
+  if (domain != "dralun.com") { document.title = "Dralun · " + domain; }
+  switch (pathArray.length) {
+    case 2:
+      address = pathArray[1];// makeEditor();
+      mode=0; //setEditor("../" + address + "/profile");
+      //$.get("../" + address + "/profile", function (data) {  $("#home").html(renderMd(data));});
+      break; } }
+
+class User {
+  check(name) { this.name = name; $.get("../user/" + name + "/check", function (data) {  alert(data); }); }
+  create(name, secret, mail) { this.name = name; this.secret = secret; this.mail = mail; 
+    $.get("../user/" + domain + "/" + address + "/profile", function (data) {  alert(data); });
+  }
+  sign() {}
+
+}
+var currentUser = new User();
+ 
+document.addEventListener('DOMContentLoaded', function() { 
+  var elems = document.querySelectorAll('.modal'); var instances = M.Modal.init(elems); });
+window.onresize = function(event) { setEditor(); }
+initial(); 
+
+function openInNewTab(url, tab=true) { if (tab) { var win = window.open(url, '_blank'); win.focus(); } else window.open(url, '_self'); }
+ 
+function searchClear() { $('#search').val(''); }
+function searchResults() { $.post("../search/word", $('#search').val(), function(data, status){ $('#results').html(data); }); }
+
+var current = new Date(); // timestamp, milliseconds since 1970 (?) vs. milliseconds (UTC)
+ var yyyy = current.getFullYear(), MM = current.getMonth(), dd = current.getDate(), hh = current.getHours(), mm = current.getMinutes(), ss = current.getSeconds();
+ var datestamp = yyyy + "." + MM + "." + dd;
+ var timestamp = hh + ":" + mm + ":" + ss;
+ $.post("../search/ip", "", function (data) { $('#stat-date').html(datestamp); $('#stat-time').html(timestamp); $('#stat-ip').html(data);});
+
+ async function submitUser() { let hash = await genEncryptionKey($("#user-password").val()); }
+   
+   async function genEncryptionKey (password) { 
+     var algo = {name: 'PBKDF2',hash: 'SHA-256',salt: new TextEncoder().encode('a-different-salt-string'),iterations: 1000}, derived = { name: 'AES-GCM', length: 256 }, encoded = new TextEncoder().encode(password), key = await crypto.subtle.importKey('raw', encoded, { name: 'PBKDF2' }, false, ['deriveKey']);
+     var temp = await crypto.subtle.deriveKey(algo, key, derived, true, ['encrypt', 'decrypt']);
+     var exports = await crypto.subtle.exportKey('jwk', temp);
+     return JSON.stringify(exports); } 
+</script>
+<style>
+body { margin: 0; top: 0; left: 0; overflow-x: hidden; padding: 0 0 0 0; font-family: Arial, Helvetica, sans-serif; background-color: white; }
+
+.hidden { display:none!important; height: 0; padding: 0!important; } .disappear { visibility: hidden; } .load { opacity: 0; } .gone { width:0; height:0; z-index:-400; position:absolute; top:-9999; left:-9999;}
+.fade {-webkit-animation-name: fade;-webkit-animation-duration: 1.5s;animation-name: fade;animation-duration: 1.5s;} @-webkit-keyframes fade {from {opacity: .4}to {opacity: 1}} @keyframes fade {from {opacity: .4}to {opacity: 1}}
+/*.disabled { pointer-events: none; opacity: 0.5; background: #CCC; }*//*div:hover { color: rgba(0, 0, 0, 0.3); }*/
+
+img { -khtml-user-select: none;-o-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+span {-khtml-user-select: none;-o-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+div {-khtml-user-select: none;-o-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+
+#slider { opacity: 1; transition: opacity .8s linear; } #slider:hover {opacity:0.5; }
+
+*::-webkit-scrollbar, *::-webkit-scrollbar-thumb {width: 26px;border-radius: 1px;background-clip: padding-box;border: 10px solid transparent;height: 1px;    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);} *::-webkit-scrollbar-thumb { box-shadow: inset 0 0 0 10px; }
+
+#menu-logo {opacity:1; 
+  transition: opacity .8s linear;}
+#menu-logo:hover { opacity:0.5; }
+.stamp-image { margin-left: 64px; width:64px; height:64px;} .stamp-image:hover {opacity:0.5; cursor: pointer;} 
+
+/* materialize */
+nav ul a {display: flex!important; align-items: center;}
+.badge { margin-right: 12;border-radius: 12px;color: white!important;padding-right: 12px!important;padding-left: 12px!important;padding-bottom: 10px!important;box-shadow: black 0px 0px 2px!important;height: 24px!important;}
+.content div, .content span { transition:opacity 0.2s; -webkit-transition: opacity 0.2; } .hide-item { opacity: 0; }
+.input-field i, .input-field span, .input-field input, .input-field { cursor:pointer!important; }
+.input-field label { cursor:pointer!important; color:black!important;}
+
+.sidenav .collapsible, .sidenav.fixed .collapsible {border-top: 1px solid #ddd!important; border-right: 1px solid #ddd!important; border-left: 1px solid #ddd!important;margin: .5rem 0 1rem 0;-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)!important;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)!important; }
+
+.pac-container { z-index:1100!important; } .pac-logo::after { display: none!important; }
+.pac-card {   margin: 10px 10px 0 0; border-radius: 2px 0 0 2px;  box-sizing: border-box; -moz-box-sizing: border-box; outline: none;  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  background-color: #fff; font-family: Roboto;}
+#pac-container { padding-bottom: 12px;  margin-right: 12px; }
+.pac-controls { display: inline-block; padding: 5px 11px; }
+.pac-controls label {  font-family: Roboto; font-size: 13px; font-weight: 300; }
+#pac-input {   background-color: #fff;  font-family: Roboto; font-size: 15px;  font-weight: 300;  margin-left: 12px;  padding: 0 11px 0 13px;  text-overflow: ellipsis;   width: 400px; }
+#pac-input:focus { border-color: #4d90fe; }
+
+.select-dropdown li img { width: 32px; height: 32px; }
+.dropdown-content li { display:flex; align-items: center;}
+
+/* mobile */
+.screen-hide {display:none;}
+@media screen and (max-width: 800px) {.screen-hide {display:block;}}
+@media screen and (max-height: 450px) {.sidenav {padding-top: 15px;}.sidenav a {font-size: 18px;}}
+@media screen and (max-width: 800px) {/* .logo { width: 36px; height:36px; }*/}
+
+@media print {#quick-button { display:none!important}}
+
+code { white-space: break-spaces;}
+
+/* form */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+::backdrop{background-color: white;}
+div.active {opacity: 1;height: auto;}
+  
+.row-section {transition: opacity 1s ease-out;overflow: hidden;}
+  
+.hover-base { opacity: 0.8; border: solid 1px rgba(255, 255, 255, 0); transition:all 0.1s; -webkit-transition: all 0.1; cursor: pointer;}
+.hover-base:hover { opacity: 1; color:#26a69a; }
+.hover-base:hover label { color:#26a69a!important } .hover-base:hover input {border-bottom:1px solid #26a69a!important;}
+.hover-base:focus-within label { color:#26a69a!important;}
+.hover-base span { opacity:0; } .hover-select, .hover-select span { opacity: 1!important; }
+  
+.green-notice { color: green;} .red-notice { color:red;}
+  
+.form-disable { pointer-events: none; opacity:0.5; }
+
+/* editor */
+.coder { background-color: whitesmoke;padding: 12;margin: 12;user-select: text; }
+code { color: gray;line-height: 1;}
+
+.note {padding: 48; background-color: aliceblue;width: 75%;display: flex;justify-content: center;border-radius: 12px;margin: auto;position: relative;top: 16;}
+
+#map {height: calc(100% - 110px);}
+    
+#description { font-family: Roboto; font-size: 15px; font-weight: 300;}
+#infowindow-content .title {  font-weight: bold; }
+#infowindow-content {  display: none;} 
+#map #infowindow-content {  display: inline; }
+
+.btn {
+  overflow: hidden;
+}
+.btn:hover:before {
+  opacity:1;
+}
+
+.btn:before {
+    content: '';
+    opacity: 0.5;
+    background-color: rgba(109, 109, 109, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: opacity .2s;
+    z-index: -1;
+}</style>
+
+
+<script>
+// profile Profile
+//...pic, background, link, date joined, stars, views, location, description
+
+//project docs editor...
+
+var action, domain, address, message, signature, data, docs; //array?
+var data = new FormData();
+
+ //var logoImg = $('input[name="logoImg"]').get(0).files[0];
+ //formData.append('logo', logoImg);
+ //formData.append('id', id);
+ //formData.append('name', userName);
+ 
+ //$.ajax({type: "POST", url: url, data: formData, contentType: false,processData: false,cache: false, complete: function(data) {alert("success");}});
+ 
+
+ 
+ var mirror;
+ function makeEditor() {
+   var te_markdown = document.getElementById("code-markdown");
+   //te_markdown.value ="test data";
+   //editor_html.foldCode(CodeMirror.Pos(34, 0));
+   window.editor_markdown = CodeMirror.fromTextArea(te_markdown, {
+     mode: "markdown", lineNumbers: true, lineWrapping: true,
+     extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+     foldGutter: true, gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"] });
+   //window.editor_markdown.setSize(width,height);
+   mirror = window.editor_markdown;};
+ 
+ function tester(text, i) { 
+   text = text.toString();text = text.replace('<textarea class="merma">', '').trim();
+   let insert = function (code) { $('#mermaid').append('<div>' + code + '</div>');};
+   mermaid.render("merman"+i.toString(), text, insert);}
+
+//window.history.pushState({"html":area,"pageTitle":""},"","http://localhost/state");
+window.onpopstate = function(e){
+  if(e.state){backConsole(e.state.html);
+    //document.getElementById("content").innerHTML = e.state.html;
+    //document.title = e.state.pageTitle;
+  } else { backConsole('home');} };
+ //(public, private)?
+var mode = 0; //0(view), 1(edit), 2(preview), 3(grid), 4(map)
+function setEditor(doc) {
+   var width = window.innerWidth; var height = window.innerHeight - 240; //menu, footer
+   $("#holder").hide(); $("#viewer").hide(); $("#mycode").hide(); $("#grid").hide(); $("#map").hide(); 
+   $("#tools").hide(); $("#toolset").hide();
+ 
+   switch(mode) {
+   case 0:
+     $("#holder").show(); $("#viewer").show(); 
+     $("#viewer").css("width", "100%"); $("#viewer").css("height", "100%");
+     if (doc == '') {
+       $("#viewer").html(renderMd(window.editor_markdown.getValue()));
+     } else {
+     $.get(doc, function (data) { mirror.getDoc().setValue(data); $("#viewer").html(renderMd(window.editor_markdown.getValue()));}); }break;
+   case 1:
+     $("#holder").show(); $("#mycode").show(); $("#tools").show();
+     mirror.setSize(width-100, height);
+     if (doc != '') $.get(doc, function (data) { mirror.getDoc().setValue(data);});break;
+   case 2:
+     $("#holder").show(); $("#viewer").show(); $("#mycode").show(); $("#tools").show();
+     $("#viewer").css("width", width/2); $("#viewer").css("height", height);
+     mirror.setSize(width/2, height);
+     if (doc == '') {
+       $("#viewer").html(renderMd(window.editor_markdown.getValue()));
+     } else {
+       $.get(doc, function (data) { mirror.getDoc().setValue(data); $("#viewer").html(renderMd(window.editor_markdown.getValue()));}); } break;
+   case 3:
+    $("#toolset").show();$("#grid").show(); break;
+   case 4:
+    $("#toolset").show();$("#map").show(); break;
+   default:}}
+ 
+function renderMd(text) { 
+  $('#mermaid').html("");
+  var mermaidEx = /<textarea[\s\S]*?>([\s\S]*?)(?=<\/textarea>)/gi;
+ 
+  var result; var counter = 0;
+  while((result = mermaidEx.exec(text)) !== null) { tester(result[1], counter); counter++;}
+  text = text.replace(mermaidEx, ""); text += $("#mermaid").html(); text.replace(mermaidEx, "");
+
+  //[!TEXT](label)
+  var textEx = /\[!TEXT\]\((.*)\)/gi; text = text.replace(textEx, "<div class='input-field col s6'><input id='last_name' type='text' class='validate'><label for='last_name'>Last Name</label></div>");
+
+  //[!TASK](item|yes/no,...)
+  var taskEx = /\[!TASK\]\((.*)\)/gi; text = text.replace(taskEx, "<label><input type='checkbox' class='filled-in' checked='checked' /><span>$1</span></label>");
+
+  //[!RADIO](item)
+  var radioEx = /\[!RADIO\]\((.*)\)/gi; text = text.replace(radioEx, "<label><input class='with-gap' name='group1' type='radio' /><span>$1</span></label>");
+
+  //[!SELECT]
+  // <div class="input-field col s12"><select multiple><option value="" disabled selected>Choose your option</option><option value="1">Option 1</option><option value="2">Option 2</option></select><label>Materialize Multiple Select</label></div>
+
+  //[!LABEL](text|color) sticker...
+  var tagEx = /\[!LABEL\]\((.*)\|(.*)\)/gi; text = text.replace(tagEx, "<span class='badge $2'>$1</span>");
+
+  ////[!KEY](type|value) SSH, monero (wallet) QR?
+
+  //[!NOTE](text)
+  var noteEx = /\[!NOTE\]\((.*)\)/gi; text = text.replace(noteEx, "<div class='note'>$1</div>");
+
+  //[!CONTACT] // message? comment?
+  //var contactEx = /\[!CONTACT\]\((.*)\|(.*)\)/gi; text = text.replace(contactEx, "<div class='note $1'>$2</div>");
+ 
+   //[!IMAGE](src, height, width)
+   var imageEx = /\[!IMAGE\]\((.*),(.*),(.*)\)/gi; text = text.replace(imageEx, "<div style='text-align:center;'><img src='$1' height='$2' width='$3' /></div>");
+
+  //[!LOCATION](term, key) (latitude, longitude, key) destination?
+  var locationEx = /\[!LOCATION\]\((.*)\|(.*)\)/gi; text = text.replace(locationEx, "<iframe width='600' height='450' style='border:0' loading='lazy' allowfullscreen src='https://www.google.com/maps/embed/v1/place?key=API_KEY&q=Space+Needle,Seattle+WA'></iframe>");
+
+  //[!MEDIA]()
+  var mediaEx = /\[!MEDIA\]\((.*)/gi; text = text.replace(mediaEx, "<iframe id='ytplayer' type='text/html' width='640' height='360' src='https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com' frameborder='0'></iframe>");
+ 
+   //##HEADER
+   var headEx4 = /#### (.*)/gi; var headEx3 = /### (.*)/gi; var headEx2 = /## (.*)/gi;
+   text = text.replace(headEx4, '<h6>$1</h6>'); text = text.replace(headEx3, '<h5>$1</h5>'); text = text.replace(headEx2, '<h4>$1</h4>');
+   
+   //[!LINK](href)
+   var linkEx = /\[([^\]]+)\]\(([^\)]+)\)/gi; text = text.replace(linkEx, "<a href='$2'>$1</a>");
+ 
+   //**bold**
+   var boldEx = /\*\*([^\*]+)\*\*/gi; text = text.replace(boldEx, "<span style='font-weight:bold;'>$1</span>");
+   //*italic*
+   var italicEx = /\*([^\*]+)\*/gi; text = text.replace(italicEx, "<span style='font-style:italic;'>$1</span>");
+ 
+  //- bullet list
+   var bulletStart = /\n\n(- .*)/gi; var bulletEx = /- (.*)/gi; var bulletEnd = /(- .*)\n\n/gi; 
+   text = text.replace(bulletStart, '<ul>$1'); text = text.replace(bulletEnd, '$1</ul>\n\n'); text = text.replace(bulletEx, '<li>$1</li>');
+   
+   //1. number list
+   var listStartEnd = /(1\. ((?!\n\n\n).)*)/gis; var listEx = /1\. (((?!\n\n).)*)/gis; 
+   text = text.replace(listStartEnd, '<ol>$1</ol>'); text = text.replace(listEx, '<li>$1</li>');
+ 
+   //```code block``` //<pre><code>?
+   var codeEx = /```\n([^`]+)```/gi; text = text.replace(codeEx, "<div class='coder'><code>$1</code></div>"); 
+   
+   //|table|header|
+   //|-|-|
+   //|column|data|
+   var tableStart = /(\|(?:(?!\n\n)[\s\S])*)/; //var tableRow = /\|(((?!\|\n)[\s\S])*)/gi; var tableCell = /(.*)(?:\|)(.*)/gi;
+   //text = text.replace(tableStart, '<table><tr><td>$1</td></tr></table>').replaceAll("|", "</td><td>").replaceAll("<td>\n</td>","</tr><tr>").replaceAll("<td>-</td>","").replaceAll("<td></td>",""); //text = text.replace(tableRow, '<tr>$1</tr>'); text = text.replace(tableCell, '<td>$1</td><td>$2</td>');
+   
+   var figureEx = ""; // empty block "stragety", mermaid, shipping
+
+   //shipping...
+
+   //var calculationEx = /\[!CALC\]\((.*)\|(.*)\)/gi; text = text.replace(calculationEx, "<div class='note $1'>$2</div>"); //[!CALC](ledger/payment?)
+   
+   //var eventEx = /\[!DATETIME\]\((.*)\|(.*)\)/gi; text = text.replace(eventEx, "<div class='note $1'>$2</div>"); //[!DATETIME](utc|text|duration|frequency)
+   // ...S-M-T-W-T-F-S(bubble buttons)(repeat), use reminder/alarms with timer/stopwatch, countdown
+ 
+   //height = 350 #3.5 in (9 cm), width = 250 #2 in (6.5 cm), playing card?
+   
+   
+   
+   // allow selection
+   
+   var lineEx = /\n\n/gi; text = text.replace(lineEx, '<br/>');
+   //var paragraphEx...
+   $('#build').find('*').addClass('browser-default'); $('#start').find('*').addClass('browser-default');
+   return text;}
+ 
+  $( "#preview" ).on("click", function(e) {e.stopImmediatePropagation();});
+ function previewMode() {
+   if (!($("#preview").is(':checked'))) { mode = 2; setEditor('');}
+   else { mode = 1; setEditor(''); }}
+ 
+
+   var myInput = document.getElementById('myFileInput');
+   
+   //myInput.addEventListener('change', sendPic, false);
+   
+ function setUser() { formdata = new FormData();
+   if($("#default_file").prop('files').length > 0) { file = $("#default_file").prop('files')[0]; formdata.append("file1", file); }
+   $.ajax({ url: site + "/upload", type: "POST", data: formdata, processData: false, contentType: false, success: function(data) { alert('uploaded'); } }); }
+ 
+   var flag = ["tribe", "monument", "town", "forest", "international"]; //pair? series 1?
+   //- Pairs of emoji
+   //🙂🙂.ws - 🧦🧦.ws - 🧤🧤.ws - 👣👣.ws - [🌳🌳](xn--wh8ha.ws) with treeop.com - 👖👖.ws - 👓👓.ws - [⛓⛓](xn--l9ha.ws) with boxcha.in - [📮📮](xn--ku8ha.ws) with boxb.in - [⚙⚙]() - 🏳🏳 🏴🏴 🏳🏴 🏴🏳 - [🐁🐁]() [🐭🐭]() [🖱🖱]() - [🔩🔩](xn--8v8ha.ws)
+   //bitstat.us - localstat.us - statemap.us - [mattdown.com]() [📚📚](xn--zt8ha.ws) [✏✏](xn--bcia.ws) with mattdown.me - servius.me
+   
+   //improvement?
+   //receipt history (with donation)
+   //landlord/tenant search, public/private land?
+  
+   function initAutocomplete() {
+       //const myLatLng = { lat: 40.60629778778453, lng: -82.29932616003995 };, 
+       const myLatLng = new google.maps.LatLng(42.98645124103318, -107.65560702085807);
+       const map = new google.maps.Map(document.getElementById("map"), {center: myLatLng, zoom: 4, mapTypeId: "roadmap", });
+   
+       //<!-- <li id="user-start">
+       //<a id="user-link" class="waves-effect waves-light btn blue modal-trigger" href="#user-modal" style="display:inline-block!important"><i class="material-icons">badge</i></a></li>-->
+   
+       const contentString ="<div style='width:240; height:120; display:flex; background-color:aliceblue'><img src='forest.jpg' /><br/>custom picture<br/><a href='https://XXXX'>Link to site (forwarded)</a><br/><a href='https://maps.com'>Link to map</a><br/>current owner<br/>Last sold price: (button to buy)<br/>...enter wallet/forward address</div>";
+   
+       //const gridString = "<div class="collapsible-header">
+       //<i class="material-icons">place</i>Second</div>
+     //<div class="collapsible-body">
+      // <div  class="collection">
+        // <a href="#!" class="collection-item">Alvin</a>
+        // <a href="#!" class="collection-item active">Alvin</a>
+        // <a href="#!" class="collection-item">Alvin</a>
+        // <a href="#!" class="collection-item">Alvin</a>
+      // </div><span>Lorem ipsum dolor sit amet.</span></div>";
+   //<a href="#!" class="collection-item active">Alvin</a>
+       const transactionTable = "<div  class='collection'></div>";
+       const transaction = "<a href='#!' class='collection-item'>XXXX</a>";
+   
+       for(a = 0; a < 0; a++) //final.length; a++)
+       {
+           if (!(typeof points[a][1] === 'number')) {alert(points[a][0]);}
+           const listText = "<li><div class='collapsible-header'><i class='material-icons'>filter_drama</i>" + points[a][0] + "</div><div class='collapsible-body'><span>Lorem ipsum dolor sit amet.</span></div></li>";
+           $("#list-items").append(listText);
+           const marker = new google.maps.Marker({position: {lat: points[a][1], lng: points[a][2]}, map, title: points[a][0],
+           icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/library_maps.png", });
+           
+           const newContent = contentString.replace("XXXX",points[a][0]);
+           const infowindow = new google.maps.InfoWindow({
+       content: newContent, });
+           marker.addListener("click", () => { infowindow.open(marker.get('map'), marker); });}}
+   
+           const preloadImage = src => 
+           new Promise(r => {
+             const image = new Image()
+             image.onload = r
+             image.onerror = r
+             image.src = src
+           })
+         
+         // Preload an image
+         //await preloadImage('https://picsum.photos/100/100')
+         
+         // Preload a bunch of images in parallel 
+         //await Promise.all(images.map(x => preloadImage(x.src)))
+</script>
+<!--
+         > PLANME objectives
+         >! README objectives
+         
+         Calculation
+         Tag
+         Camera/Location/Notification
+         
+         [!file]()
+         [!map](address(contact))
+         [!image](https://mattdown.com/matt/profile/test.png)
+         [!note|info|bug|tip](this is a note)*stickers
+         [!event](start|end|subject)*calendar
+         [!mail](to|from|subject)[message][attachment1|attachment2]
+         [!input](editable project doc)
+         
+         <textarea class="merma">
+         graph TD
+           A[Christmas] -->|Get money| B(Go shopping)
+           B --> C{Let me think}
+           C -->|One| D[Laptop]
+           C -->|Two| E[iPhone]
+           C -->|Three| F[fa:fa-car Car]</textarea>
+         
+         <textarea class="merma">
+         sequenceDiagram
+           Alice->>+John: Hello John, how are you?
+           Alice->>+John: John, can you hear me?
+           John-->>-Alice: Hi Alice, I can hear you!
+           John-->>-Alice: I feel great!</textarea>
+         
+         <textarea class="merma">
+         classDiagram
+           Animal <|-- Duck
+           Animal <|-- Fish
+           Animal <|-- Zebra
+           Animal : +int age
+           Animal : +String gender
+           Animal: +isMammal()
+           Animal: +mate()
+           class Duck{
+             +String beakColor
+             +swim()
+             +quack()
+           }
+           class Fish{
+             -int sizeInFeet
+             -canEat()
+           }
+           class Zebra{
+             +bool is_wild
+             +run()
+           }</textarea>
+         
+         <textarea class="merma">
+         stateDiagram-v2
+           [*] --> Still
+           Still --> [*]
+           Still --> Moving
+           Moving --> Still
+           Moving --> Crash
+           Crash --> [*]</textarea>
+         
+         <textarea class="merma">
+         gantt
+           title A Gantt Diagram
+           dateFormat  YYYY-MM-DD
+           section Section
+           A task           :a1, 2014-01-01, 30d
+           Another task     :after a1  , 20d
+           section Another
+           Task in sec      :2014-01-12  , 12d
+           another task      : 24d</textarea>
+         
+         <textarea class="merma">
+         pie title Pets adopted by volunteers
+           "Dogs" : 386
+           "Cats" : 85
+           "Rats" : 15</textarea>
+         
+         <textarea class="merma">
+           journey
+           title My working day
+           section Go to work
+             Make tea: 5: Me
+             Go upstairs: 3: Me
+             Do work: 1: Me, Cat
+           section Go home
+             Go downstairs: 5: Me
+             Sit down: 3: Me</textarea>
+         
+         <textarea class="merma">
+         erDiagram
+                 CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+                 CUSTOMER ||--o{ ORDER : places
+                 CUSTOMER ||--o{ INVOICE : "liable for"
+                 DELIVERY-ADDRESS ||--o{ ORDER : receives
+                 INVOICE ||--|{ ORDER : covers
+                 ORDER ||--|{ ORDER-ITEM : includes
+                 PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+                 PRODUCT ||--o{ ORDER-ITEM : "ordered in"</textarea>
+         
+         <p>
+           When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+             \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]</p></div>
+
