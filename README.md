@@ -37,6 +37,53 @@ Enjoy!
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-xMR_x3lYAA/0.jpg)](https://www.youtube.com/watch?v=-xMR_x3lYAA)
 
-family bios... with pic?  seperate repo?
+**Version 1.04**
 
-probably not good idea, where to put personals?
+   
+1. Use SSH *optional*, get IP with `ip addr`, then set router and forward ports to:
+|Port|Function|
+|-|-|
+|80|http|
+|443|https|
+|2525|mail|
+|587|tls|
+
+1. Run site, use backup/restore *optional*:
+```
+./build.sh site #adjust processors, use 'lscpu'
+```
+
+## How to install servius
+
+Configure domains using **Google** [domain](https://domains.google.com) 
+
+Setup router with the following ports:
+
+|Port|Function|
+|-|-|
+|80|http|
+|443|https|
+|2525|mail|
+|587|tls|
+
+Install certs using: (also configure haproxy)
+```
+certbot certonly --standalone -d ${site}, cp -r /etc/letsencrypt/live/${site} data/${site}
+sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
+```
+
+Build a strack unit, attach an M.2 drive (enclosure) and run `servius/servos/install.sh old`. Deploy unit.
+
+Go to site and setup user/password. Repeat build strack units for each additional and use add IP function.
+
+### Additional commands
+
+```
+fdisk -l #show drives
+df, ls -a, du -xhS | sort -h | tail -n15 #show file/folder info
+lscpu #show hardware info
+grep -R "term" #search
+
+ip addr show #show network connections
+ping google.com -c 2 #test network
+```
