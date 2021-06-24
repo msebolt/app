@@ -36,3 +36,7 @@ Visit `https://localhost` to get started with your site/app. Changes made can be
 Enjoy!
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-xMR_x3lYAA/0.jpg)](https://www.youtube.com/watch?v=-xMR_x3lYAA)
+
+family bios... with pic?  seperate repo?
+
+probably not good idea, where to put personals?
