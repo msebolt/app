@@ -66,4 +66,6 @@ grep -R "term" #search
 
 ip addr show #show network connections
 ping google.com -c 2 #test network
+find /home/username/ -name "*.err"
+#sed 's/.*six.*/fault/' file     # check all lines
 ```
