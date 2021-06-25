@@ -1,7 +1,7 @@
 
 ## patOS (with software of inifinitive-basis)
 
-![software](https://github.com/msebolt/patOS/raw/main/boxapprentice.png =100x20)
+<img src="https://github.com/msebolt/patOS/raw/main/boxapprentice.png" width="200" height="200" />
 
 1. Download [Arch Linux](http://mirror.rackspace.com/archlinux/iso/2021.06.01/archlinux-2021.06.01-x86_64.iso), then create an ISO, use either: 
 
