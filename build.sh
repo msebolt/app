@@ -10,7 +10,7 @@ password="" #temp1234
 user_name="bit"
 user_password="temp1234"
 
-#min="linux syslinux mkinitcpio edk2-shell efibootmgr gptfdisk vim iwd wayland" #wayfire labwc-git hikari
+#min="linux syslinux mkinitcpio edk2-shell efibootmgr gptfdisk vim iwd wayland" #wayfire labwc-git hikari dwl
 client="nano vim mkinitcpio syslinux linux iwd git parted xf86-video-intel arch-install-scripts b43-fwcutter bind-tools broadcom-wl btrfs-progs clonezilla crda darkhttpd ddrescue diffutils dmraid dosfstools edk2-shell efibootmgr ethtool exfat-utils f2fs-tools fsarchiver gnu-netcat gpm gptfdisk grml-zsh-config haveged hdparm irssi jfsutils kitty-terminfo lftp linux-atm linux-firmware lsscsi lvm2 lynx man-db man-pages mc mdadm mkinitcpio-archiso mkinitcpio-nfs-utils mtools nbd ndisc6 nfs-utils nilfs-utils nmap ntfs-3g nvme-cli openconnect openvpn partclone partimage ppp pptpclient reflector reiserfsprogs rp-pppoe rxvt-unicode-terminfo sdparm sg3_utils smartmontools sudo systemd-resolvconf tcpdump terminus-font termite-terminfo testdisk usb_modeswitch usbutils vpnc wireless-regdb wireless_tools wvdial xfsprogs xl2tpd zsh alsa-utils archiso cmake dhcp dialog hostapd hwloc libmicrohttpd mesa mime-types ntp wget onboard openbox lxde-common lxdm lxsession xorg-server xorg-xhost xorg-xinit xorg-xinput xorg-xrandr xterm feh chromium code openscad scons inkscape gimp blender musescore openshot"
 #wayland sway
 server="haproxy certbot rsync python python-pip"
