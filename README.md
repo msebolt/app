@@ -1,7 +1,7 @@
 
-## Git Started (with software of inifinitive-basis)
+## patOS (with software of inifinitive-basis)
 
-![software](https://github.com/msebolt/site/raw/main/1760745908.jpg)
+![software](https://github.com/msebolt/patOS/raw/main/boxapprentice.png =100x20)
 
 1. Download [Arch Linux](http://mirror.rackspace.com/archlinux/iso/2021.06.01/archlinux-2021.06.01-x86_64.iso), then create an ISO, use either: 
 
