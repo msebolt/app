@@ -1,7 +1,8 @@
 
-## patOS (with software of inifinitive-basis)
+<img src="https://github.com/msebolt/patOS/raw/main/boxapprentice.png" width="200" height="240" />
 
-<img src="https://github.com/msebolt/patOS/raw/main/boxapprentice.png" width="200" height="200" />
+## patOS (with software of inifinitive-basis) **Version 1.04**
+
 
 1. Download [Arch Linux](http://mirror.rackspace.com/archlinux/iso/2021.06.01/archlinux-2021.06.01-x86_64.iso), then create an ISO, use either: 
 
@@ -35,9 +36,11 @@ Visit `https://localhost` to get started with your site/app. Changes made can be
 
 Enjoy!
 
+<img src="https://github.com/msebolt/patOS/raw/main/boxapprentice2.png" width="200" height="200" />
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-xMR_x3lYAA/0.jpg)](https://www.youtube.com/watch?v=-xMR_x3lYAA)
 
-**Version 1.04**
+
 
    
 1. Use SSH *optional*, get IP with `ip addr`, then set router and forward ports to:
@@ -57,24 +60,11 @@ Enjoy!
 
 Configure domains using **Google** [domain](https://domains.google.com) 
 
-Setup router with the following ports:
-
-|Port|Function|
-|-|-|
-|80|http|
-|443|https|
-|2525|mail|
-|587|tls|
-
 Install certs using: (also configure haproxy)
 ```
 certbot certonly --standalone -d ${site}, cp -r /etc/letsencrypt/live/${site} data/${site}
 sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
 ```
-
-Build a strack unit, attach an M.2 drive (enclosure) and run `servius/servos/install.sh old`. Deploy unit.
-
-Go to site and setup user/password. Repeat build strack units for each additional and use add IP function.
 
 ### Additional commands
 
