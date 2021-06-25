@@ -1,8 +1,15 @@
 
-<img src="https://github.com/msebolt/patOS/raw/main/boxapprentice.png" width="200" height="240" />
+<img style="text-align:center;" src="https://github.com/msebolt/patOS/raw/main/boxapprentice.png" width="200" height="240" />
 
 ## patOS (with software of inifinitive-basis) **Version 1.04**
 
+|Port|Function|
+|-|-|
+|80|http|
+|443|https|
+|2525|mail|
+|587|tls|
+**Port Setup** use `ip addr`
 
 1. Download [Arch Linux](http://mirror.rackspace.com/archlinux/iso/2021.06.01/archlinux-2021.06.01-x86_64.iso), then create an ISO, use either: 
 
@@ -40,27 +47,10 @@ Enjoy!
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-xMR_x3lYAA/0.jpg)](https://www.youtube.com/watch?v=-xMR_x3lYAA)
 
-
-
-   
-1. Use SSH *optional*, get IP with `ip addr`, then set router and forward ports to:
-|Port|Function|
-|-|-|
-|80|http|
-|443|https|
-|2525|mail|
-|587|tls|
-
-1. Run site, use backup/restore *optional*:
-```
-./build.sh site #adjust processors, use 'lscpu'
-```
-
-## How to install servius
-
 Configure domains using **Google** [domain](https://domains.google.com) 
 
 Install certs using: (also configure haproxy)
+
 ```
 certbot certonly --standalone -d ${site}, cp -r /etc/letsencrypt/live/${site} data/${site}
 sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
