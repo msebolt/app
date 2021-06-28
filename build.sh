@@ -6,22 +6,33 @@ drive="/dev/sda"
 drived="" #p
 partuuid=$(blkid -o export "${drive}${drived}"2 | grep PARTUUID)
 
-password="" #temp1234
-user_name="bit"
-user_password="temp1234"
+password="temp1234"
+user_name="pat"
+user_password="temp1234" #hash
 
-#min="linux syslinux mkinitcpio edk2-shell efibootmgr gptfdisk vim iwd wayland" #wayfire labwc-git hikari dwl
-client="nano vim mkinitcpio syslinux linux iwd git parted xf86-video-intel arch-install-scripts b43-fwcutter bind-tools broadcom-wl btrfs-progs clonezilla crda darkhttpd ddrescue diffutils dmraid dosfstools edk2-shell efibootmgr ethtool exfat-utils f2fs-tools fsarchiver gnu-netcat gpm gptfdisk grml-zsh-config haveged hdparm irssi jfsutils kitty-terminfo lftp linux-atm linux-firmware lsscsi lvm2 lynx man-db man-pages mc mdadm mkinitcpio-archiso mkinitcpio-nfs-utils mtools nbd ndisc6 nfs-utils nilfs-utils nmap ntfs-3g nvme-cli openconnect openvpn partclone partimage ppp pptpclient reflector reiserfsprogs rp-pppoe rxvt-unicode-terminfo sdparm sg3_utils smartmontools sudo systemd-resolvconf tcpdump terminus-font termite-terminfo testdisk usb_modeswitch usbutils vpnc wireless-regdb wireless_tools wvdial xfsprogs xl2tpd zsh alsa-utils archiso cmake dhcp dialog hostapd hwloc libmicrohttpd mesa mime-types ntp wget onboard openbox lxde-common lxdm lxsession xorg-server xorg-xhost xorg-xinit xorg-xinput xorg-xrandr xterm feh chromium code openscad scons inkscape gimp blender musescore openshot"
-#wayland sway
+client="linux syslinux mkinitcpio edk2-shell efibootmgr gptfdisk vim iwd xorg-server xorg-xhost xorg-xrandr chromium" #wayland wayfire labwc-git hikari dwl
+#nano git parted xf86-video-intel arch-install-scripts b43-fwcutter bind-tools broadcom-wl btrfs-progs
+#clonezilla crda darkhttpd ddrescue diffutils dmraid dosfstools edk2-shell efibootmgr ethtool exfat-utils f2fs-tools fsarchiver gnu-netcat gpm 
+#gptfdisk grml-zsh-config haveged hdparm irssi jfsutils kitty-terminfo lftp linux-atm linux-firmware lsscsi lvm2 lynx man-db man-pages mc mdadm 
+#mkinitcpio-archiso mkinitcpio-nfs-utils mtools nbd ndisc6 nfs-utils nilfs-utils nmap ntfs-3g nvme-cli openconnect openvpn partclone partimage 
+#ppp pptpclient reflector reiserfsprogs rp-pppoe rxvt-unicode-terminfo sdparm sg3_utils smartmontools sudo systemd-resolvconf tcpdump 
+#terminus-font termite-terminfo testdisk usb_modeswitch usbutils vpnc wireless-regdb wireless_tools wvdial xfsprogs xl2tpd zsh alsa-utils 
+#archiso cmake dhcp dialog hostapd hwloc libmicrohttpd mesa mime-types ntp wget onboard openbox lxde-common lxdm lxsession 
+#feh openscad scons inkscape gimp blender musescore openshot
+
 server="haproxy certbot rsync python python-pip"
 python="aiohttp asyncio av aiortc opencv-python aiosmtpd"
 
 timezone=""
-host="bitos"
+host="patos"
 
 wifi_adapter=$(echo $(ls -d /sys/class/net/w*) | sed 's/\/sys\/class\/net\///g')
 wifi_id=""
 wifi_password=""
+
+mail="a@b.com"
+mail_server="mail.x.com"
+mail_password="temp1234"
 
 client_ip="192.168.1.126"
 dev_ip=""
@@ -84,8 +95,8 @@ install() {
     pacman -Syu
     pacman -Sy --noconfirm ${client}
 
-    chmod +x /usr/bin/bitos
-    systemctl enable bitos.service
+    chmod +x /usr/bin/patos
+    systemctl enable patos.service
 
     menu
     pip install ${python}
@@ -104,7 +115,6 @@ install() {
 Address=${ip}
 EOF
     iwctl --passphrase ${wifi_password} station ${wifi_adapter} connect ${wifi_id} #optional, for wireless
-
     mv /usr/bin/lxpolkit /usr/bin/lxpolkit.bak
 
     #sync config files...
@@ -119,7 +129,6 @@ boot() {
     hostnamectl set-hostname ${host}
 
     mv /boot/loader/entries/archiso-x86_64-linux.conf /boot/loader/entries/archiso-x86_64-linux.conf.old
-
     mv /boot/syslinux/syslinux.cfg /boot/syslinux/syslinux.cfg.old
 
     sed -i "s/root=XXXX/root=${partuuid}/g" /boot/loader/entries/archiso-x86_64-linux.conf
